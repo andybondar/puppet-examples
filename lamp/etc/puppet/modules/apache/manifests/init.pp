@@ -3,10 +3,6 @@ class apache (
 ) inherits ::apache::params  {
 
 
-$conffile   = '/etc/apache2/apache2.conf'
-$confsource = 'puppet:///modules/apache/apache2.conf'
-
-
   package { 'apache':
     name    => $apachename,
     ensure  => present,

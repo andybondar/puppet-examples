@@ -5,7 +5,7 @@ class apache::vhosts {
       ensure  => file,
       content  => template('apache/vhosts-deb.conf.erb'),
     }
-    file { "/var/www/$servername":
+    file { "/var/www/html/$servername":
       ensure    => directory,
     }
     file { "/var/www/html/$servername/public_html":
