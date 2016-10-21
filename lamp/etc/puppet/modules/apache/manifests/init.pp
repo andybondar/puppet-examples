@@ -12,6 +12,7 @@ class apache (
     path    => $conffile,
     ensure  => file,
     source  => $confsource,
+    require => Package['apache'],
     notify  => Service['apache-service'],
   }
 

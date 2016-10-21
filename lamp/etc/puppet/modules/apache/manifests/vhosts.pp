@@ -3,7 +3,9 @@ class apache::vhosts {
   if $::osfamily == 'Debian' {
     file { "/etc/apache2/sites-available/$servername.conf":
       ensure  => file,
-      content  => template('apache/vhosts-deb.conf.erb'),
+      content => template('apache/vhosts-deb.conf.erb'),
+      require => Package['apache'],
+      notify  => Service['apache-service'],
     }
     file { "/var/www/html/$servername":
       ensure    => directory,
