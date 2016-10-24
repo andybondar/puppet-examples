@@ -5,4 +5,5 @@ node default {
 
 	include apache
 	include apache::vhosts
+	include php
 }
