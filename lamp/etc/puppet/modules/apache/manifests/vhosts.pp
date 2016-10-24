@@ -5,6 +5,18 @@ class apache::vhosts {
       ensure  => file,
       content => template('apache/vhosts-deb.conf.erb'),
       require => Package['apache'],
+#      notify  => Service['apache-service'],
+    }
+    file { "/etc/apache2/sites-enabled/$servername.conf":
+      ensure => link,
+      target => "/etc/apache2/sites-available/$servername.conf",
+      require => [ 
+        Package['apache'],
+        File['configuration-file'],
+        File["/var/www/html/$servername"],
+        File["/var/www/html/$servername/public_html"],
+        File["/var/www/html/$servername/logs"],
+      ],
       notify  => Service['apache-service'],
     }
     file { "/var/www/html/$servername":

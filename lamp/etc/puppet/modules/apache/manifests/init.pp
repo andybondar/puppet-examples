@@ -13,7 +13,6 @@ class apache (
     ensure  => file,
     source  => $confsource,
     require => Package['apache'],
-    notify  => Service['apache-service'],
   }
 
   service { 'apache-service':
