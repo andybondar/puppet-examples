@@ -1,0 +1,6 @@
+databases:
+  webdata:
+   user: 'webuser'
+   password: 'webuser'
+   grant: 'ALL'
+
