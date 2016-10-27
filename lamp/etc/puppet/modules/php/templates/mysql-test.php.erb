@@ -1,0 +1,13 @@
+<?php
+$dbhost = 'localhost';
+$dbuser = '<%= @dbuser -%>';
+$dbpass = '<%= @dbpass -%>';
+
+$link = mysql_connect( $dbhost, $dbuser, $dbpass);
+if (!$link) {
+    die('Could not connect: ' . mysql_error());
+}
+echo 'Connected successfully';
+mysql_close($link);
+?>
+
