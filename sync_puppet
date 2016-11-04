@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Colors
+RED=$(tput setaf 1)
+NC=$(tput sgr0) # no color
+GREEN=$(tput setaf 2)
+
+ERROR=0
+
+echo "Validating Puppet DSL syntax..."
+for i in $(find lamp/ -type f -name "*.pp"); do puppet parser validate $i; done
+if [ "$?" -eq 1 ]; then
+	echo "${RED}ERROR:${NC} Puppet parser failed to validate syntax"
+	exit 1
+else
+	echo "Puppet DSL syntax ${GREEN}OK${NC}"
+fi
+echo "Validating Ruby syntax..."
+for i in $(find lamp/ -type f -name "*.erb"); do echo $i; erb -x -T '-' $i | ruby -c; done
+if [ "$?" -eq 1 ]; then
+        echo "${RED}FAILURE:${NC} Ruby syntax error(s) found"
+        exit 1
+else
+	echo "Ruby syntax ${GREEN}OK${NC}"
+fi
+echo "Syncing with /etc/puppet/ ..."
+sudo rsync -av lamp/etc/puppet/ /etc/puppet
