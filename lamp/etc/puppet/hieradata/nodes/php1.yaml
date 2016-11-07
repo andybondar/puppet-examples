@@ -4,5 +4,6 @@ databases:
    password: 'webuser'
    grant: 'ALL'
 virtualhosts:
-  servername: 'php.example.com'
-  serveremail: 'webmaster@php.example.com'
+  php1:
+   servername: 'php.example.com'
+   serveremail: 'webmaster@php.example.com'
