@@ -23,5 +23,7 @@ if [ "$?" -eq 1 ]; then
 else
 	echo "Ruby syntax OK"
 fi
-echo "Syncing with /etc/puppet/ ..."
-sudo rsync -av lamp/etc/puppet/ /etc/puppet
+if [ "$1" == "--sync" ]; then
+	echo "Syncing with /etc/puppet/ ..."
+	sudo rsync -av lamp/etc/puppet/ /etc/puppet
+fi

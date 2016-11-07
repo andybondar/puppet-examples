@@ -4,6 +4,5 @@ databases:
    password: 'webuser'
    grant: 'ALL'
 virtualhosts:
-  puppet:
-   servername: 'puppet.example.com'
-   serveremail: 'webmaster@puppet.example.com'
+  servername: 'php.example.com'
+  serveremail: 'webmaster@php.example.com'

@@ -1,6 +1,8 @@
 node default {
-        $serveremail = 'webmaster@example.com'
-        $servername = 'example.com'
+	$virtualhosts = hiera('virtualhosts')
+	$virtualhostname = keys($virtualhosts)
+        $serveremail = $virtualhosts["$virtualhostname"]["serveremail"]
+        $servername = $virtualhosts["$virtualhostname"]["servername"]
 
 	include apache
 	include apache::vhosts
