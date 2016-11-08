@@ -21,12 +21,15 @@ class apache::vhosts {
     }
     file { "/var/www/html/$servername":
       ensure    => directory,
+      require => Package['apache'],
     }
     file { "/var/www/html/$servername/public_html":
       ensure    => directory,
+      require => File["/var/www/html/$servername"],
     }
     file { "/var/www/html/$servername/logs":
       ensure    => directory,
+      require => File["/var/www/html/$servername"],
     }
     file { "/tmp/virthost":
        content => inline_template("export VIRTHOST=${servername}"),
@@ -35,5 +38,4 @@ class apache::vhosts {
   } else {
     fail("This is not a supported distro.")  
   }
-
 }
