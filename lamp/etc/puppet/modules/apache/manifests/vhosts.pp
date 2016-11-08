@@ -28,12 +28,10 @@ class apache::vhosts {
     file { "/var/www/html/$servername/logs":
       ensure    => directory,
     }
-    # Should be used only on dev and maybe test envs
-    file_line { "virtualhost_name":
-      path => "/etc/environment",
-      line => "VIRTHOST=${servername}",
-      match => "^VIRTHOST=",
-   }
+    file { "/tmp/virthost":
+       content => inline_template("export VIRTHOST=${servername}"),
+       mode => "0666",
+    }
   } else {
     fail("This is not a supported distro.")  
   }

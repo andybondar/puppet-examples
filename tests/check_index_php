@@ -1,5 +1,15 @@
 #!/bin/bash
 
+if [ -f /tmp/virthost ]; then
+   echo "Export variable"
+   source /tmp/virthost
+else
+   echo "ERROR: file /tmp/virthost does not exist"
+   exit 1
+fi
+
+echo "Server name: ${VIRTHOST}"
+
 if [ $(curl -s -o /dev/null -w "%{http_code}" http://${VIRTHOST}/index.php) -eq 200 ]; then
    echo "PHP App responds"
 else
