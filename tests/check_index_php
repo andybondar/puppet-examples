@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $(curl -s -o /dev/null -w "%{http_code}" http://${VIRTHOST}/index.php) -eq 200 ]; then
+   echo "PHP App responds"
+else
+   echo "PHP App doesn't work"
+   exit 1
+fi
+
