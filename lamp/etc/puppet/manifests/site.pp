@@ -4,5 +4,4 @@ node default {
 
 
 	include apache
-	include apache::vhosts
 }
